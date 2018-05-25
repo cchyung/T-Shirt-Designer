@@ -23,8 +23,6 @@ class StyleColorSerializer(serializers.ModelSerializer):
         fields = (
             'color',
             'hex',
-            'image',
-            'styles'
         )
 
 

@@ -9,5 +9,5 @@ router.register(r'^styles/(?P<style_uuid>[\w-]+)/colors', views.StyleColorViewSe
 
 urlpatterns = [
     url(r'^', include(router.urls)),
-    url(r'^inks/$', views.InkColorListView.as_view)
+    url(r'^inks/$', views.InkColorListView.as_view())
 ]
