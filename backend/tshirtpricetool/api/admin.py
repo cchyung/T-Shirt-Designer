@@ -5,5 +5,7 @@ from django.contrib import admin
 from models import *
 
 # Register your models here.
-admin.site.register(Shirt)
-admin.site.register(ShirtColor)
+admin.site.register(Style)
+admin.site.register(StylePrice)
+admin.site.register(StyleColor)
+admin.site.register(InkColor)
