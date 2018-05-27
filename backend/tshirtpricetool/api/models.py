@@ -42,6 +42,17 @@ class StylePrice(models.Model):
         return self.style.__str__() + " prices"
 
 
+# For images of garments.  Has field for both front and back view
+class StyleImage(models.Model):
+    style = models.ForeignKey(Style, on_delete=models.CASCADE)
+    color = models.ForeignKey(StyleColor, on_delete=models.CASCADE)
+    front = models.URLField(blank=True)
+    back = models.URLField(blank=True)
+
+    def __str__(self):
+        return self.style.__str__() + self.color.__str__() + " image"
+
+
 # For ink color selections
 class InkColor(models.Model):
     color = models.CharField(max_length=40, default='Default Color')
