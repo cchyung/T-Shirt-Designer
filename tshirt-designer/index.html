@@ -23,6 +23,7 @@ Created On: 5/20/18
   <script src="js/fabric.js/dist/fabric.min.js"></script>
 
   <script src="js/main.js"></script>
+  <script src="js/data.js"></script>
 
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -30,13 +31,34 @@ Created On: 5/20/18
   <div class='canvas-container'>
     <canvas id='c'></canvas>
   </div>
+  <div class='content-block'>
+    <div class='options'>
+      <div class='styles'>
+        <h1> Styles </h1>
+        <div class='style-container'></div>
+      </div>
 
-  <div class='options'>
-    <div class='styles'>
-      <h1> Styles </h1>
-      <div class='style-container'></div>
+      <div class='style-colors'>
+        <h1> Colors </h1>
+        <div class='style-colors-container'></div>
+      </div>
+
+      <div class='ink-colors'>
+        <h1> Ink Colors </h1>
+        <div class='ink-colors-container'></div>
+      </div>
+
+      <div class='quantities'>
+        <h1> Quantities </h1>
+        XS  <input class='quantity-input' type='number' name='xs'><br>
+        S   <input class='quantity-input' type='number' name='s'><br>
+        M   <input class='quantity-input' type='number' name='m'><br>
+        L   <input class='quantity-input' type='number' name='l'><br>
+        XL  <input class='quantity-input' type='number' name='xl'><br>
+        2XL <input class='quantity-input' type='number' name='xl2'><br>
+        Total <span id='total-quantity'>0</span>
+      </div>
     </div>
-
   </div>
 </body>
 </html>

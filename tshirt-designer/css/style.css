@@ -1,7 +1,7 @@
 .canvas-container {
   margin: 0 auto;
-  width: 50%;
-  height: 500px;
+  width: 450px;
+  height: 600px;
 
   padding-top: 50px;
 }
@@ -10,11 +10,28 @@
   border: 1px solid black;
 }
 
-
-
+.content-block{
+  width: 80%;
+  margin: 0 auto;
+}
 
 /* ---- Options ---- */
+.color {
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  margin: 8px;
+  border: 2px solid white;
+  transition: ease 0.2s all;
+}
 
+.color:hover{
+  border: 2px solid green;
+}
+
+.color.selected {
+  border: 2px solid green;
+}
 
 /* -- Styles -- */
 .style {
@@ -29,3 +46,5 @@
 .style-container .selected {
   background-color: green;
 }
+
+/* -- Style Colors -- */
