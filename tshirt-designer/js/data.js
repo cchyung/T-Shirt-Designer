@@ -45,15 +45,15 @@ let tempStyleColors = [
 let tempInkColors = [
   {
       "color": "White",
-      "hex": "000000"
+      "hex": "FFFFFF"
   },
   {
       "color": "Ice Grey",
-      "hex": "000000"
+      "hex": "d1d9d2"
   },
   {
       "color": "Light Grey",
-      "hex": "000000"
+      "hex": "d3d3d3"
   },
   {
       "color": "Black",
@@ -61,21 +61,24 @@ let tempInkColors = [
   },
   {
       "color": "Slate",
-      "hex": "000000"
+      "hex": "778899"
   },
   {
       "color": "Navy",
-      "hex": "000000"
+      "hex": "000080"
   },
   {
       "color": "Dark Cyan",
-      "hex": "000000"
+      "hex": "008B8B"
   },
   {
       "color": "Cyan",
-      "hex": "000000"
+      "hex": "00FFFF"
   }
 ]
+
+let frontImageUrl = 'temp-assets/temp-front.jpg';
+let backImageUrl = 'temp-assets/temp-back.jpg';
 
 
 function fetchStyles(callback) {
@@ -89,3 +92,10 @@ function fetchStyleColors(styleID, callback) {
 function fetchInkColors(callback){
   callback(tempInkColors)
 }
+
+// function fetchImages(styleID, color, callback){
+//   callback({
+//     front: frontImageUrl,
+//     back: backImageUrl
+//   })
+// }
