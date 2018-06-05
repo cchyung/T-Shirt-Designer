@@ -34,3 +34,13 @@ class InkColorSerializer(serializers.ModelSerializer):
             'color',
             'hex',
         )
+
+
+class StyleImage(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.StyleImage
+        fields = (
+            'front',
+            'back',
+        )
