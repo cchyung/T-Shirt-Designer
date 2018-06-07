@@ -23,10 +23,15 @@ class Style(models.Model):
 class StyleColor(models.Model):
     styles = models.ManyToManyField(Style)
     color = models.CharField(max_length=40, default='Default Color')
+    slug = models.SlugField(max_length=40, default='default-color', editable=False)
     hex = models.CharField(max_length=6, default='FFFFFF')
 
     def __str__(self):
         return self.color
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.color)
+        super(StyleColor, self).save(*args, **kwargs)
 
 
 # Pricing based on quantity brackets

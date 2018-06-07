@@ -22,6 +22,7 @@ class StyleColorSerializer(serializers.ModelSerializer):
         model = models.StyleColor
         fields = (
             'color',
+            'slug',
             'hex',
         )
 
@@ -32,11 +33,11 @@ class InkColorSerializer(serializers.ModelSerializer):
         model = models.InkColor
         fields = (
             'color',
-            'hex',
+            'hex'
         )
 
 
-class StyleImage(serializers.ModelSerializer):
+class StyleImageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.StyleImage
