@@ -23,7 +23,9 @@ Created On: 5/20/18
   <script src="js/fabric.js"></script>
 
   <script src="js/main.js"></script>
+  <script src="js/canvas.js"></script>
   <script src="js/data.js"></script>
+  <script src="js/jscolor.js"></script>
 
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -48,6 +50,19 @@ Created On: 5/20/18
     </button>
     <input type='file' id="image-upload" name="image-upload"
           accept=".jpg, .jpeg, .png">
+    <div class='text-art-container'>
+      <select id='text-art-font-select'>
+        <option value="times">Times</option>
+        <option value="arial">Arial</option>
+        <option value="comic-sans">Comic Sans</option>
+        <option value="courier-new">Courier New</option>
+        <option value="bookman">Bookman</soption>
+      </select>
+      <button id='text-art-color-select' class='jscolor btn'>Select Color</button>
+      <button id='text-art-btn' class='btn'>Add Text</button>
+    </div>
+
+    <button id='delete-element-btn' class='btn'>Delete Element</button>
   </div>
 
   <div class='content-block'>
