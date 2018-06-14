@@ -42,39 +42,37 @@ let tempStyleColors = [
   }
 ]
 
-let tempInkColors = [
+let tempAddons = [
   {
-      "color": "White",
-      "hex": "FFFFFF"
+    "addon_id": 1,
+    "name": "Sleeve Printing",
+    "cost": 2.00
   },
   {
-      "color": "Ice Grey",
-      "hex": "d1d9d2"
+    "addon_id": 2,
+    "name": "Addon 2",
+    "cost": 1.50
   },
   {
-      "color": "Light Grey",
-      "hex": "d3d3d3"
+    "addon_id": 3,
+    "name": "Addon 3",
+    "cost": 3.50
   },
   {
-      "color": "Black",
-      "hex": "000000"
+    "addon_id": 4,
+    "name": "Addon 4",
+    "cost": 4.50
   },
   {
-      "color": "Slate",
-      "hex": "778899"
+    "addon_id": 5,
+    "name": "Addon 5",
+    "cost": .50
   },
   {
-      "color": "Navy",
-      "hex": "000080"
+    "addon_id": 6,
+    "name": "Addon 6",
+    "cost": 1.00
   },
-  {
-      "color": "Dark Cyan",
-      "hex": "008B8B"
-  },
-  {
-      "color": "Cyan",
-      "hex": "00FFFF"
-  }
 ]
 
 let frontImageUrl = 'temp-assets/temp-front.jpg';
@@ -89,8 +87,8 @@ function fetchStyleColors(styleID, callback) {
   callback(tempStyleColors)
 }
 
-function fetchInkColors(callback){
-  callback(tempInkColors)
+function fetchAddons(callback){
+  callback(tempAddons)
 }
 
 // function fetchImages(styleID, color, callback){

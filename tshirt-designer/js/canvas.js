@@ -45,11 +45,56 @@ function setupCanvas(){
       oImg.scaleToHeight(canvasHeight);
       oImg.selectable = false; // not selectable
       backCanvas.add(oImg);
+      setupGuides(); // setup guides after images have loaded in!
   });
 
   setupSwitchCanvas();
   setupAddText();
   setupDeleteButton();
+}
+
+function setupGuides(){
+  let frontGuide = new fabric.Rect({
+    width: canvasWidth * 0.3,
+    height: canvasHeight * 0.55,
+    strokeDashArray: [10, 10],
+    stroke: '#00FFFF',
+    strokeWidth: 1,
+    fill: 'rgba(0,0,0,0)',
+    selectable: false,
+    top: canvasHeight * 0.15
+  })
+
+  let backGuide = new fabric.Rect({
+    width: canvasWidth * 0.3,
+    height: canvasHeight * 0.55,
+    strokeDashArray: [10, 10],
+    stroke: '#00FFFF',
+    strokeWidth: 1,
+    fill: 'rgba(0,0,0,0)',
+    selectable: false,
+    top: canvasHeight * 0.15
+  })
+
+  frontCanvas.on('selection:created', function(){
+    frontCanvas.add(frontGuide);
+    frontGuide.centerH();
+  })
+
+  frontCanvas.on('selection:cleared', function(){
+    frontCanvas.remove(frontGuide);
+  })
+
+  backCanvas.on('selection:created', function(){
+    backCanvas.add(backGuide);
+    backGuide.centerH();
+  })
+
+  backCanvas.on('selection:cleared', function(){
+    backCanvas.remove(backGuide);
+  })
+
+
 }
 
 function setupSwitchCanvas(){
@@ -96,6 +141,7 @@ function setupUploadImage(){
 
         imageObject.onload = function(){
           console.log("image uploaded!");
+
           // create fabric image from imageObject
           let image = new fabric.Image(imageObject);
 
@@ -125,9 +171,6 @@ function setupAddText(){
   let colorSelect = $('#text-art-color-select');
 
   textButton.click(function(){
-
-    console.log(colorSelect.jscolor)
-
     let textArt = new fabric.IText("Text", {
       fontFamily: $('#text-art-font-select option:selected').text(),
       fill: colorSelect.css('background-color')
