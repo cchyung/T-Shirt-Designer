@@ -65,3 +65,12 @@ class InkColor(models.Model):
 
     def __str__(self):
         return self.color
+
+
+# For printing addons
+class Addon(models.Model):
+    name = models.CharField(max_length=40, default='Addon')
+    cost = models.DecimalField(max_digits=6, decimal_places=2)
+
+    def __str__(self):
+        return self.name

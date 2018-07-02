@@ -38,6 +38,19 @@ class InkColorListView(generics.ListAPIView):
     queryset = models.InkColor.objects.all()
 
 
+# returns every style but just a single color for display purposes
+class StyleImageList(generics.ListAPIView):
+    serializer_class = serializers.StyleImageSerializer
+
+    def get_queryset(self):
+        queryset = []
+        for style in models.Style.objects.all():
+            image = models.StyleImage.filter(style=style)[0]
+            if image is not None:
+                queryset.append(image)
+
+        return queryset
+
 class StyleImageDetail(generics.RetrieveAPIView):
     serializer_class = serializers.StyleImageSerializer
     queryset = models.StyleImage.objects.all()
@@ -49,9 +62,10 @@ class StyleImageDetail(generics.RetrieveAPIView):
         color_slug = self.kwargs['color']
         style = models.Style.objects.filter(uuid=uuid)
         color = models.StyleColor.objects.filter(slug=color_slug)
-
-        print style
-        print color
-        
         obj = get_object_or_404(queryset, style=style, color=color)
         return obj
+
+
+class AddonListView(generics.ListAPIView):
+    serializer_class = serializers.AddonSerializer
+    queryset = models.Addon.objects.all()

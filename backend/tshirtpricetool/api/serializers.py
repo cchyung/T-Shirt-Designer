@@ -45,3 +45,13 @@ class StyleImageSerializer(serializers.ModelSerializer):
             'front',
             'back',
         )
+
+
+class AddonSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.Addon
+        fields = (
+            'id',
+            'name'
+        )
