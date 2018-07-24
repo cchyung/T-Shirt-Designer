@@ -98,7 +98,7 @@ function setupGuides(){
 }
 
 function setupSwitchCanvas(){
-  let btn = $('#switch');
+  let btn = $('#switch-btn');
   $('.canvas-back').hide(); // hide back canvas
 
   btn.click(switchCanvas);
@@ -109,7 +109,7 @@ function switchCanvas(){
   let backCanvasContainer = $('.canvas-back');
 
   let status = $('.current-side');
-  let btn = $('.btn-switch');
+  let btn = $('#switch-btn');
 
   if(frontShowing){
     frontCanvasContainer.hide();

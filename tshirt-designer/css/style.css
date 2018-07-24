@@ -11,19 +11,17 @@
 }
 
 /* ---- Canvas ---- */
+.designer {
+  position: fixed;
+  right: 80px;
+  width: 500px;
+}
+
 .canvas-container {
   margin: 0 auto;
-  width: 600px;
-  height: 600px;
+  width: 500px;
+  height: 500px;
   padding-top: 10px;
-}
-
-.canvas {
-  border: 1px solid black;
-}
-
-.canvas-back {
-
 }
 
 .current-side {
@@ -37,13 +35,74 @@
   width: 440px;
 }
 
-.canvas-action-container .btn {
-  margin-right: -4px;
-  width: 200px;
+.controls {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.control {
+  position: relative;
+  display: inline-block;
+  margin: 0 10px;
+  width: 100px;
+  height: 100px;
+  background-color: #4A4A4A;
+  vertical-align: top;
+}
+
+.control-content {
+  position: absolute;
+  width: 100%;
+  bottom: 10px;
+}
+
+.control-content span {
+  display: block;
+  width: 85%;
+  bottom: 10px;
+  margin: 0 auto;
+
+  text-align: center;
+  font-size: 12px;
+  color: white;
+}
+
+.control-icon {
+  display: block;
+  margin: 0 auto;
+  padding-bottom: 10px;
+
+  width: 40px;
+}
+
+/* resize smaller icon */
+.control-icon#switch-side-icon {
+  width:50px;
 }
 
 #image-upload {
   display: none;
+}
+
+/* ---- Text Add ---- */
+.text-art-container {
+  position: absolute;
+  width: 180px;
+  height: 130px;
+
+  border-radius: 15px;
+  background-color: #F8F8F8;
+  box-shadow: 1px 2px 4px grey;
+}
+
+#text-art-font-select {
+  border: 0;
+
+}
+
+#text-art-font-select:after {
+  border: 0;
+  background-color: 0;
 }
 
 /* ---- Options ---- */
