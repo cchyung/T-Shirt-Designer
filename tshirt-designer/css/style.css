@@ -13,7 +13,7 @@
 /* ---- Canvas ---- */
 .designer {
   position: fixed;
-  right: 80px;
+  right: 5%;
   width: 500px;
 }
 
@@ -106,6 +106,15 @@
 }
 
 /* ---- Options ---- */
+.options {
+  padding: 10px 35px;
+  width: 50%;
+  max-width: 600px;
+
+  border-radius: 10px;
+  background-color: #F8F8F8;
+}
+
 .color {
   height: 30px;
   width: 30px;
@@ -131,6 +140,10 @@
   text-align: center;
   display: inline-block;
   margin: 10px;
+}
+
+.style-container {
+  margin: 0 auto;
 }
 
 .style-container .selected {
