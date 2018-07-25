@@ -70,8 +70,9 @@ h3 {
   position: relative;
   display: inline-block;
   margin: 0 10px;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
+  border-radius: 5px;
   background-color: #4A4A4A;
   vertical-align: top;
 }
@@ -97,13 +98,12 @@ h3 {
   display: block;
   margin: 0 auto;
   padding-bottom: 10px;
-
-  width: 40px;
+  width: 25px;
 }
 
 /* resize smaller icon */
 .control-icon#switch-side-icon {
-  width:50px;
+  width: 35px;
 }
 
 #image-upload {
@@ -113,8 +113,9 @@ h3 {
 /* ---- Text Add ---- */
 .text-art-container {
   position: absolute;
-  width: 180px;
-  height: 130px;
+  right: 0px;
+  bottom: 20px;
+  padding: 10px 30px;
 
   border-radius: 15px;
   background-color: #F8F8F8;
@@ -123,12 +124,18 @@ h3 {
 
 #text-art-font-select {
   border: 0;
-
 }
 
 #text-art-font-select:after {
   border: 0;
   background-color: 0;
+}
+
+#text-art-color-select {
+  width: 15px;
+  height: 15px;
+  border: 1px solid black;
+
 }
 
 /* ---- Options ---- */
