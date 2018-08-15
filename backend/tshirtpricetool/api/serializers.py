@@ -1,9 +1,21 @@
 from rest_framework import serializers
 import models
-from django.core import exceptions
+
+
+class StyleColorSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.StyleColor
+        fields = (
+            'color',
+            'slug',
+            'hex'
+        )
 
 
 class StyleSerializer(serializers.ModelSerializer):
+    colors = StyleColorSerializer(many=True, read_only=True)
+
     class Meta:
         model = models.Style
         fields = (
@@ -11,19 +23,8 @@ class StyleSerializer(serializers.ModelSerializer):
             'style_id',
             'name',
             'brand',
-            'description'
-        )
-
-
-class StyleColorSerializer(serializers.ModelSerializer):
-    # style = StyleSerializer()
-
-    class Meta:
-        model = models.StyleColor
-        fields = (
-            'color',
-            'slug',
-            'hex',
+            'description',
+            'colors'
         )
 
 

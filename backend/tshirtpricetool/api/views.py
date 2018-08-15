@@ -2,18 +2,23 @@ from __future__ import unicode_literals
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.http import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
 
 # -*- coding: utf-8 -*-
+from django.template import loader
 
 from rest_framework import status, viewsets, generics
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
+from django.views import View
+from django import forms
 import models
 import serializers
+from api import book_parser
 
 
 class StyleViewSet(viewsets.ReadOnlyModelViewSet):
@@ -51,6 +56,7 @@ class StyleImageList(generics.ListAPIView):
 
         return queryset
 
+
 class StyleImageDetail(generics.RetrieveAPIView):
     serializer_class = serializers.StyleImageSerializer
     queryset = models.StyleImage.objects.all()
@@ -69,3 +75,40 @@ class StyleImageDetail(generics.RetrieveAPIView):
 class AddonListView(generics.ListAPIView):
     serializer_class = serializers.AddonSerializer
     queryset = models.Addon.objects.all()
+
+
+class UploadFileForm(forms.Form):
+    file = forms.FileField(required=True)
+    clear = forms.BooleanField(required=False)
+
+
+# for uploading excel sheets to populate the database
+class UploadBookView(View):
+    def get(self, request):
+        form = UploadFileForm()
+        template = loader.get_template('api/upload_book.html')
+        return render(request, 'api/upload_book.html', { 'form': form })
+
+    def post(self, request):
+        form = UploadFileForm(request.POST, request.FILES)
+        file = request.FILES.get('file')
+        error = False
+        error_message = ""
+        if(file is not None):
+            # handle file
+            book_parser.parse_workbook(file)
+        else:
+            error = True
+            error_message = "There was an error uploading the file, please try again"
+
+        uploaded = form.is_valid()
+        return render(
+            request,
+            'api/upload_book.html',
+            {
+                'form': form,
+                'uploaded': uploaded,
+                'error': error,
+                'error_message': error_message
+            }
+        )

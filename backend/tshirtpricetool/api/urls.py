@@ -12,5 +12,6 @@ urlpatterns = [
     url(r'^inks/$', views.InkColorListView.as_view()),
     url(r'^styles/(?P<style_uuid>[\w-]+)/images/(?P<color>[\w-]+)$', views.StyleImageDetail.as_view()),
     url(r'^styles/image-list', views.StyleImageList.as_view()),
-    url(r'^addons', views.AddonListView.as_view())
+    url(r'^addons', views.AddonListView.as_view()),
+    url(r'^upload-book', views.UploadBookView.as_view())
 ]
