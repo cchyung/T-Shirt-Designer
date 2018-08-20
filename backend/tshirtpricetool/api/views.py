@@ -86,12 +86,13 @@ class UploadBookView(View):
 
     def post(self, request):
         form = UploadFileForm(request.POST, request.FILES)
-        file = request.FILES.get('file')
+        uploaded_file = request.FILES.get('file')
+        clear = request.POST.get('clear')
         error = False
         error_message = ""
-        if(file is not None):
+        if(uploaded_file is not None):
             # handle file
-            book_parser.parse_workbook(file)
+            book_parser.parse_workbook(uploaded_file, clear)
         else:
             error = True
             error_message = "There was an error uploading the file, please try again"

@@ -1,20 +1,25 @@
 from openpyxl import load_workbook
 import models
 
+# utility methods for parsing an excel sheet to populate the database
 
-def parse_workbook(file_name):
+def parse_workbook(file_name, clear):
     wb = load_workbook(file_name)
 
-    # temp delete all to refresh db
-    models.StyleColor.objects.all().delete()
-    models.Style.objects.all().delete()
-    models.StyleImage.objects.all().delete()
-    models.StylePrice.objects.all().delete()
+    if clear:
+        # temp delete all to refresh db
+        print "clearing database"
+        models.StyleColor.objects.all().delete()
+        models.Style.objects.all().delete()
+        models.StyleImage.objects.all().delete()
+        models.StylePrice.objects.all().delete()
+        models.Addon.objects.all().delete()
 
     parse_colors(wb.worksheets[0])
     parse_styles(wb.worksheets[1])
     parse_prices(wb.worksheets[2])
     parse_images(wb.worksheets[3])
+    parse_addons(wb.worksheets[4])
 
 
 # parses colors for styles
@@ -26,6 +31,7 @@ def parse_colors(colors):
                 hex=color_row[1].value
             )
             color.save()
+
 
 # parses styles sheets and creates style objects
 def parse_styles(styles):
@@ -51,6 +57,7 @@ def parse_styles(styles):
 
             style.save()
 
+
 # creates prices for each style based on price matrix
 def parse_prices(prices):
     for i, price_row in enumerate(prices):
@@ -74,6 +81,7 @@ def parse_prices(prices):
 
             style_price.save()
 
+
 # parses image urls for each style
 def parse_images(images):
     for i, image_row in enumerate(images):
@@ -92,13 +100,14 @@ def parse_images(images):
 
             style_image.save()
 
+
 # parse addons
 def parse_addons(addons):
     for i, addon_row in enumerate(addons):
         if i >= 1:
             name = addon_row[0].value
             cost = addon_row[1].value
-
+            print i.__str__() + ": " + name + " " + cost.__str__()
             addon = models.Addon(
                 name=name,
                 cost=cost
