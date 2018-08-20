@@ -58,16 +58,6 @@ class StyleImage(models.Model):
     def __str__(self):
         return self.style.__str__() + self.color.__str__() + " image"
 
-
-# For ink color selections
-class InkColor(models.Model):
-    color = models.CharField(max_length=40, default='Default Color')
-    hex = models.CharField(max_length=6, default='FFFFFF')
-
-    def __str__(self):
-        return self.color
-
-
 # For printing addons
 class Addon(models.Model):
     name = models.CharField(max_length=40, default='Addon')

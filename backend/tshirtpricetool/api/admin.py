@@ -8,5 +8,5 @@ from models import *
 admin.site.register(Style)
 admin.site.register(StylePrice)
 admin.site.register(StyleColor)
-admin.site.register(InkColor)
 admin.site.register(StyleImage)
+admin.site.register(Addon)

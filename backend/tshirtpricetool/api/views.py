@@ -38,11 +38,6 @@ class StyleColorViewSet(viewsets.ReadOnlyModelViewSet):
         return style.stylecolor_set.all()
 
 
-class InkColorListView(generics.ListAPIView):
-    serializer_class = serializers.InkColorSerializer
-    queryset = models.InkColor.objects.all()
-
-
 # returns every style but just a single color for display purposes
 class StyleImageList(generics.ListAPIView):
     serializer_class = serializers.StyleImageSerializer

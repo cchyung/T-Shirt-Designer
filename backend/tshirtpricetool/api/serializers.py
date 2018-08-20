@@ -28,16 +28,6 @@ class StyleSerializer(serializers.ModelSerializer):
         )
 
 
-class InkColorSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = models.InkColor
-        fields = (
-            'color',
-            'hex'
-        )
-
-
 class StyleImageSerializer(serializers.ModelSerializer):
 
     class Meta:

@@ -82,7 +82,7 @@ def parse_images(images):
             style = models.Style.objects.get(style_id=style_id)
             color_slug = image_row[1].value
             color = models.StyleColor.objects.get(slug=color_slug)
-            
+
             style_image = models.StyleImage(
                 style=style,
                 color=color,
@@ -91,3 +91,17 @@ def parse_images(images):
             )
 
             style_image.save()
+
+# parse addons
+def parse_addons(addons):
+    for i, addon_row in enumerate(addons):
+        if i >= 1:
+            name = addon_row[0].value
+            cost = addon_row[1].value
+
+            addon = models.Addon(
+                name=name,
+                cost=cost
+            )
+
+            addon.save()
