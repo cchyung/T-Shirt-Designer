@@ -107,22 +107,19 @@ function setupSwitchCanvas(){
 function switchCanvas(){
   let frontCanvasContainer = $('.canvas-front');
   let backCanvasContainer = $('.canvas-back');
-
-  let status = $('.current-side');
   let btn = $('#switch-btn');
+  let btnText = $('#switch-side-btn-text');
 
   if(frontShowing){
     frontCanvasContainer.hide();
     backCanvasContainer.show();
-    status.text('Back');
-    btn.text('Switch to Front');
+    btnText.text('Show Front');
     frontShowing = false;
     selectedCanvas = backCanvas;
   } else {
     frontCanvasContainer.show();
     backCanvasContainer.hide();
-    status.text('Front');
-    btn.text('Switch to Back');
+    btnText.text('Show Back');
     frontShowing = true;
     selectedCanvas = frontCanvas;
   }
@@ -167,22 +164,34 @@ function setupUploadImage(){
 
 function setupAddText(){
   let textButton = $('#text-art-btn');
+
+  textButton.click(function(){
+    // Show text add menu
+    let textArtContainer = $('.text-art-container');
+    textArtContainer.addClass('show');
+
+    $('#text-art-add-btn').on('click', addText);
+  });
+}
+
+function addText() {
   let fontSelect = $('#text-art-font-select');
   let colorSelect = $('#text-art-color-select');
 
-  textButton.click(function(){
-    let textArt = new fabric.IText("Text", {
-      fontFamily: $('#text-art-font-select option:selected').text(),
-      fill: colorSelect.css('background-color')
-    });
-
-    textArt.set({
-      left: 10,
-      top:10
-    });
-
-    selectedCanvas.add(textArt);
+  let textArt = new fabric.IText("Text", {
+    fontFamily: $('#text-art-font-select option:selected').text(),
+    fill: colorSelect.css('background-color')
   });
+
+  textArt.set({
+    left: 10,
+    top:10
+  });
+
+  selectedCanvas.add(textArt); // add created text to canvas
+
+  let textArtContainer = $('.text-art-container');
+  textArtContainer.removeClass('show'); // rehide text add menu
 }
 
 function setupDeleteButton(){

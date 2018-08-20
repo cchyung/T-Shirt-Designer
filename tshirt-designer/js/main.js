@@ -8,9 +8,7 @@ function setupOptions(){
   setupQuantities()
 }
 
-
-
-let selectedStyleID = null; // tracks ID of selected style
+let selectedStyleID = null;
 let selectedStyleColor = null;
 let totalQuantity = 0;
 
@@ -18,53 +16,55 @@ let totalQuantity = 0;
 function setupStyles(styles){
   stylesContainer = $('.style-container');
 
+  // create style tiles and detail overlays
   for(var i = 0; i < styles.length; i++){
-    stylesContainer.append(`<div class='style' data-style-id='${ styles[i]["style_id"] }'> ${ styles[i]["style"] }</div>`);
+    // make div for style colors
+    let styleColorContainer = `<div class='style-colors'>`;
+    for(var j = 0; j < styles[i]["colors"].length; j++) {
+      styleColorContainer +=
+      `
+        <div
+          class='style-color'
+          style='background-color:#${ styles[i]["colors"][j]["hex"] }'
+          data-color='${ styles[i]["colors"][j]["slug"] }'
+        ></div>
+      `
+    };
+    styleColorContainer += '</div>'
+
+    stylesContainer.append(
+      `
+        <div class='style' data-style-id='${ styles[i]["style_id"] }'>
+          ${ styleColorContainer }
+          <div class='style-detail'>
+            <p class='style-name'>${ styles[i]["style"] }</p>
+          </div>
+        </div>
+      `
+    );
   }
 
   $('.style').click(function(event){
-    selectStyle(event.target)
+    selectStyle($(event.target).parent())
   });
 }
 
 // toggles selection of styles
 function selectStyle(target){
   let styleElement = $(target);
-  selectedStyle = $(target).data('style-id'); // set selected style
-  $('.style').removeClass('selected');
-  styleElement.addClass('selected');
+  selectedStyleID = $(target).data('style-id'); // set selected style id
 
-  fetchStyleColors(selectedStyle, setupStyleColors) // fetch style colors from API and setup colors
-}
+  let styleColors = styleElement.find('.style-colors');
+  styleColors.addClass('show'); // show style colors menu
 
-// Given a styleID populate colors form
-function setupStyleColors(styleColors){
-  selectedStyleColor = null; // clear selections
-
-  let styleColorsContainer = $('.style-colors-container');
-  styleColorsContainer.empty();
-
-  for(var i = 0; i < styleColors.length; i++){
-    styleColorsContainer.append(
-      `<div
-        class='style-color color'
-        data-style-color='${ styleColors[i]["color"] }'
-        style="background-color: #${ styleColors[i]["hex"] }"
-      ></div>`
-    );
-  }
-
-  $('.style-color').click(function(event){
-    selectColor(event.target)
+  // setup clicks for style colors
+  styleElement.find('.style-color').on('click', (event) => {
+    $('.style').removeClass('selected');  // reset selected styles
+    styleElement.addClass('selected');    // set as selected
+    styleColors.removeClass('show');      // hide style colors menu
+    selectedStyleColor = $(event.target).data('color'); // set selected color
+    // TODO: Fetch images for that style and color
   });
-}
-
-function selectColor(target){
-  console.log("Selected color!")
-  let styleColorElement = $(target);
-  selectedStyleColor = $(target).data('style-color');
-  $('.style-color').removeClass('selected');
-  styleColorElement.addClass('selected');
 }
 
 function setupQuantities(){

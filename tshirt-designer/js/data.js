@@ -4,18 +4,82 @@ let tempStyles = [
   {
     "style": "T Shirt",
     "style_id": 4504,
+    "colors": [
+      {
+        "color": "Carbon",
+        "hex": "625D5D"
+      },
+      {
+        "color": "Green",
+        "hex": "00FF00"
+      },
+      {
+        "color": "Blue",
+        "hex": "0000FF"
+      },
+      {
+        "color": "Red",
+        "hex": "FF0000"
+      },
+      {
+        "color": "Black",
+        "hex": "000000"
+      }
+    ]
   },
   {
     "style": "Tank Top",
     "style_id": 4404,
+    "colors": [
+      {
+        "color": "Carbon",
+        "hex": "625D5D"
+      },
+      {
+        "color": "Green",
+        "hex": "00FF00"
+      },
+      {
+        "color": "Blue",
+        "hex": "0000FF"
+      }
+    ]
   },
   {
     "style": "Hoodie",
     "style_id": 1004,
+    "colors": [
+      {
+        "color": "Blue",
+        "hex": "0000FF"
+      },
+      {
+        "color": "Red",
+        "hex": "FF0000"
+      },
+      {
+        "color": "Black",
+        "hex": "000000"
+      }
+    ]
   },
   {
     "style": "Polo Shirt",
     "style_id": 1032,
+    "colors": [
+      {
+        "color": "Carbon",
+        "hex": "625D5D"
+      },
+      {
+        "color": "Green",
+        "hex": "00FF00"
+      },
+      {
+        "color": "Black",
+        "hex": "000000"
+      }
+    ]
   },
 ]
 
