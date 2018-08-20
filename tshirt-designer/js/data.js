@@ -78,9 +78,15 @@ let tempAddons = [
 let frontImageUrl = 'temp-assets/temp-front.jpg';
 let backImageUrl = 'temp-assets/temp-back.jpg';
 
+// TODO: Change this to prod url
+const ROOT_URL = 'http://127.0.0.1:8000/api/'
 
 function fetchStyles(callback) {
-  callback(tempStyles)
+  console.log("fetching styles")
+  jQuery.get(ROOT_URL + 'styles', function(data) {
+    console.log(data)
+    callback(data);
+  })
 }
 
 function fetchStyleColors(styleID, callback) {
