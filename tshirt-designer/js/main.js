@@ -6,6 +6,7 @@ $(document).ready( function(){
 function setupOptions(){
   fetchStyles(setupStyles)
   setupQuantities()
+  fetchAddons(setupAddons)
 }
 
 let selectedStyleID = null;
@@ -32,16 +33,30 @@ function setupStyles(styles){
     };
     styleColorContainer += '</div>'
 
-    stylesContainer.append(
-      `
-        <div class='style' data-style-id='${ styles[i]["style_id"] }'>
-          ${ styleColorContainer }
-          <div class='style-detail'>
-            <p class='style-name'>${ styles[i]["style"] }</p>
-          </div>
+    let styleID = styles[i]["style_id"];
+    let styleName = styles[i]["name"];
+    let backgroundImage = styles[i]["images"]["front"];
+    let css = ``;
+    let noImage = ``;
+
+    // if there is no image, just show a white background with text
+    if(backgroundImage) {
+      css = `background-image: url(${ backgroundImage })`
+    } else {
+      noImage = `<p class='no-image'>No Image</p>`
+      css = `background-color: white;`
+    }
+
+    let styleHTML = `
+      <div class='style' data-style-id='${ styleID }' style="${ css }">
+        ${ styleColorContainer }
+        ${ noImage }
+        <div class='style-detail'>
+          <p class='style-name'>${ styleName }</p>
         </div>
-      `
-    );
+      </div>
+    `
+    stylesContainer.append(styleHTML);
   }
 
   $('.style').click(function(event){
@@ -52,7 +67,9 @@ function setupStyles(styles){
 // toggles selection of styles
 function selectStyle(target){
   let styleElement = $(target);
-  selectedStyleID = $(target).data('style-id'); // set selected style id
+
+  // hide all current showing style colors
+  $('.style-colors').removeClass('show');
 
   let styleColors = styleElement.find('.style-colors');
   styleColors.addClass('show'); // show style colors menu
@@ -63,8 +80,18 @@ function selectStyle(target){
     styleElement.addClass('selected');    // set as selected
     styleColors.removeClass('show');      // hide style colors menu
     selectedStyleColor = $(event.target).data('color'); // set selected color
-    // TODO: Fetch images for that style and color
+    selectedStyleID = $(target).data('style-id'); // set selected style id
+
+    // get images from API to update canvases
+    fetchStyleImage(selectedStyleID, selectedStyleColor, changeCanvasImage);
   });
+}
+
+// updates image in canvases
+function changeCanvasImage(images) {
+  let frontURL = images["front"];
+  let backURL = images["back"];
+  changeImage(frontURL, backURL);
 }
 
 function setupQuantities(){
@@ -79,4 +106,27 @@ function setupQuantities(){
 
     $('#total-quantity').html(totalQuantity);
   })
+}
+
+function setupAddons(addons) {
+  let addonContainer = $('.addon-container');
+  for(let i = 0; i < addons.length; i++) {
+    let name = addons[i]["name"];
+    let id = addons[i]["id"];
+    let addon =
+    `
+      <tr class='addon'>
+        <td>${ name }</td>
+        <td>
+        <input
+          class='addon-input'
+          data-addon-id=${ id }
+          type='checkbox'
+          name='addon-${ id }'>
+        </td>
+      </tr>
+    `;
+    console.log(addon);
+    addonContainer.append(addon);
+  }
 }

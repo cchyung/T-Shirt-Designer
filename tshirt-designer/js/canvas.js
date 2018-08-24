@@ -27,27 +27,6 @@ function setupCanvas(){
   backCanvas.setWidth(canvasWidth);
   backCanvas.setHeight(canvasHeight);
 
-  // temp: load default images
-  var frontImage = fabric.Image.fromURL(
-    'temp-assets/temp-front.jpg',
-    function(oImg){
-      oImg.scaleToWidth(canvasWidth);
-      oImg.scaleToHeight(canvasHeight);
-      oImg.selectable = false; // not selectable
-      frontCanvas.add(oImg);
-  });
-
-  // temp: load default images
-  var backImage = fabric.Image.fromURL(
-    'temp-assets/temp-back.jpg',
-    function(oImg){
-      oImg.scaleToWidth(canvasWidth);
-      oImg.scaleToHeight(canvasHeight);
-      oImg.selectable = false; // not selectable
-      backCanvas.add(oImg);
-      setupGuides(); // setup guides after images have loaded in!
-  });
-
   setupSwitchCanvas();
   setupAddText();
   setupDeleteButton();
@@ -178,7 +157,7 @@ function addText() {
   let fontSelect = $('#text-art-font-select');
   let colorSelect = $('#text-art-color-select');
 
-  let textArt = new fabric.IText("Text", {
+  let textArt = new fabric.IText("Double Click to Edit", {
     fontFamily: $('#text-art-font-select option:selected').text(),
     fill: colorSelect.css('background-color')
   });
@@ -218,4 +197,28 @@ function setupDeleteButton(){
   deleteButton.click(function() {
     selectedCanvas.remove(selectedCanvas.getActiveObject());
   });
+}
+
+// allows you to change the image on the canvas
+function changeImage(frontURL, backURL){
+  frontCanvas.clear();
+  backCanvas.clear();
+    var frontImage = fabric.Image.fromURL(
+      frontURL,
+      function(oImg){
+        oImg.scaleToWidth(canvasWidth);
+        oImg.scaleToHeight(canvasHeight);
+        oImg.selectable = false; // not selectable
+        frontCanvas.add(oImg);
+
+        var backImage = fabric.Image.fromURL(
+          backURL,
+          function(oImg){
+            oImg.scaleToWidth(canvasWidth);
+            oImg.scaleToHeight(canvasHeight);
+            oImg.selectable = false; // not selectable
+            backCanvas.add(oImg);
+            setupGuides(); // setup guides after images have loaded in!
+        });
+    });
 }

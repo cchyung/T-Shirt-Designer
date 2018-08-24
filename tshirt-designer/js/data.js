@@ -146,19 +146,26 @@ let backImageUrl = 'temp-assets/temp-back.jpg';
 const ROOT_URL = 'http://127.0.0.1:8000/api/'
 
 function fetchStyles(callback) {
-  console.log("fetching styles")
   jQuery.get(ROOT_URL + 'styles', function(data) {
-    console.log(data)
     callback(data);
   })
 }
 
-function fetchStyleColors(styleID, callback) {
-  callback(tempStyleColors)
+function fetchStyleImage(styleID, color_slug, callback) {
+  jQuery.get(
+    ROOT_URL + 'styles/' + styleID + '/images/' + color_slug,
+    function(data) {
+      callback(data)
+    }
+  );
 }
 
 function fetchAddons(callback){
-  callback(tempAddons)
+  jQuery.get(
+    ROOT_URL + 'addons/', function(data){
+      callback(data)
+    }
+  )
 }
 
 // function fetchImages(styleID, color, callback){
