@@ -21,7 +21,7 @@ h1, h2, h3 {
 
 h1 {
   font-size: 36px;
-  margin: 30px 0;
+  padding: 30px 0;
 }
 
 h2 {
@@ -84,6 +84,13 @@ select {
   left: 50vw;
   top: 10vh;
   width: 500px;
+}
+
+/* move designer up when window height is small */
+@media screen and ( max-height: 700px ) {
+  .designer {
+    top: 10px;
+  }
 }
 
 .canvas-container {
@@ -385,4 +392,11 @@ select {
   width: 100%;
   margin: 10px 0;
   padding: 10px;
+}
+
+/* -- responsive -- */
+@media screen and (max-width: 1300px) {
+  .content-block {
+    width: 90%;
+  }
 }
