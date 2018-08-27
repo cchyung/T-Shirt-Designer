@@ -35,7 +35,13 @@ function setupStyles(styles){
 
     let styleID = styles[i]["style_id"];
     let styleName = styles[i]["name"];
-    let backgroundImage = styles[i]["images"]["front"];
+
+    let backgroundImage = null;
+
+    if(styles[i]["images"]) {
+        backgroundImage = styles[i]["images"]["front"];
+    }
+
     let css = ``;
     let noImage = ``;
 
@@ -74,13 +80,17 @@ function selectStyle(target){
   let styleColors = styleElement.find('.style-colors');
   styleColors.addClass('show'); // show style colors menu
 
+
+  // remove earlier click event assignments to avoid multiple calls
+  $('.style-color').off('click');
+
   // setup clicks for style colors
   styleElement.find('.style-color').on('click', (event) => {
     $('.style').removeClass('selected');  // reset selected styles
     styleElement.addClass('selected');    // set as selected
     styleColors.removeClass('show');      // hide style colors menu
     selectedStyleColor = $(event.target).data('color'); // set selected color
-    selectedStyleID = $(target).data('style-id'); // set selected style id
+    selectedStyleID = styleElement.data('style-id'); // set selected style id
 
     // get images from API to update canvases
     fetchStyleImage(selectedStyleID, selectedStyleColor, changeCanvasImage);
@@ -126,7 +136,6 @@ function setupAddons(addons) {
         </td>
       </tr>
     `;
-    console.log(addon);
     addonContainer.append(addon);
   }
 }
