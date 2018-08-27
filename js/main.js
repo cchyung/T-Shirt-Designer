@@ -68,6 +68,16 @@ function setupStyles(styles){
   $('.style').click(function(event){
     selectStyle($(event.target).parent())
   });
+
+  // select first style and color initially
+  initializeFirstStyle(styles[0]);
+}
+
+function initializeFirstStyle(style) {
+  selectedStyleID = style['style_id'];
+  selectedStyleColor = style['colors'][0]['slug'];
+  $('.style').first().addClass('selected');
+  fetchStyleImage(selectedStyleID, selectedStyleColor, changeCanvasImage);
 }
 
 // toggles selection of styles
