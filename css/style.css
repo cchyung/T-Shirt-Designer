@@ -93,6 +93,15 @@ select {
   }
 }
 
+@media screen and ( max-height: 650px ) {
+  .controls {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 20px;
+  }
+}
+
 .canvas-container {
   margin: 0 auto;
   width: 500px;
@@ -210,14 +219,21 @@ select {
 }
 
 #text-art-add-btn {
+  width: 100%;
   display: block;
   font-size: 12px;
-  margin: 0 auto;
   margin-top: 10px;
 }
 
-#text-art-btn span {
+#text-art-add-btn span {
+  line-height: 1.5em;
   vertical-align: middle;
+}
+
+#text-art-add-btn img {
+  display: block;
+  position: absolute;
+  left: 25px;
 }
 
 .text-art-table {
@@ -397,6 +413,6 @@ select {
 /* -- responsive -- */
 @media screen and (max-width: 1300px) {
   .content-block {
-    width: 90%;
+    width: 85%;
   }
 }

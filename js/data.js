@@ -1,5 +1,5 @@
-const ROOT_URL = 'https://ecocentric-tshirt-designer.herokuapp.com/api/'
-// const ROOT_URL = 'http://localhost:8000/api/'
+// const ROOT_URL = 'https://ecocentric-tshirt-designer.herokuapp.com/api/'
+const ROOT_URL = 'http://localhost:8000/api/'
 
 
 function fetchStyles(callback) {
