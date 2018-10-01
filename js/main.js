@@ -4,9 +4,9 @@ $(document).ready( function(){
 
 // sets up options for quotes and t shirt designer
 function setupOptions(){
-  fetchStyles(setupStyles)
-  setupQuantities()
-  fetchAddons(setupAddons)
+  fetchStyles(setupStyles);
+  setupQuantities();
+  fetchAddons(setupAddons);
 }
 
 let selectedStyleID = null;
@@ -21,7 +21,7 @@ function setupStyles(styles){
   for(var i = 0; i < styles.length; i++){
     // make div for style colors
     let styleColorContainer = `<div class='style-colors'>`;
-    for(var j = 0; j < styles[i]["colors"].length; j++) {
+      for(var j = 0; j < styles[i]["colors"].length; j++) {
       styleColorContainer +=
       `
         <div
@@ -115,14 +115,18 @@ function changeCanvasImage(images) {
 }
 
 function setupQuantities(){
-  totalQuantity = 0; // reset total quanitity
+  totalQuantity = 0; // reset total quantity
   let inputs = $('.quantity-input');
 
+  inputs.each(function() {
+      $(this).val(0);
+  });
+
   inputs.change(function() {
-    totalQuantity = 0; // reset total quanitity here too
+    totalQuantity = 0; // reset total quantity here too
     inputs.each(function(){
       totalQuantity += Number($(this).val());
-    })
+    });
 
     $('#total-quantity').html(totalQuantity);
   })
@@ -149,3 +153,131 @@ function setupAddons(addons) {
     addonContainer.append(addon);
   }
 }
+
+function verifyForm() {
+    // check for quantity > 0, style selected, color selected
+    let errorMessages = [];
+    let errorContainer = $('.form-errors');
+    errorContainer.empty();
+
+    if(totalQuantity < 1) {
+        errorMessages.push('Quantity must be greater than 0.')
+    }
+
+    // display error messages, if empty will display nothing
+    for(let i = 0; i < errorMessages.length; i++) {
+        errorContainer.append(`<p class="form-error-msg">${ errorMessages[i] }</p>`)
+    }
+    return errorMessages.length === 0;
+}
+
+function showModal() {
+    let modal = $('.final-modal');
+    let modalBackground = $('.modal-background');
+    modal.addClass('show');
+    modalBackground.addClass('show');
+}
+
+function closeModal() {
+    let modal = $('.final-modal');
+    let modalBackground = $('.modal-background');
+    modal.removeClass('show');
+    modalBackground.removeClass('show');
+
+    $('.email-input').show(500);
+    $('.price-display').hide(500);
+
+}
+
+function submitForm() {
+    // verify correctness of form
+    if(verifyForm()) {
+        // show email modal
+        showModal();
+    }
+}
+
+function submitEmail() {
+    let emailInput = $('#email');
+    let email = emailInput.val();
+    let errorContainer = $('.email-input-errors');
+
+    // clear error container
+    errorContainer.empty();
+
+    if(email) {
+        retrieveQuote(email);
+    } else {
+        errorContainer.append(`<p class="form-error-msg">Email must not be empty.</p>`);
+    }
+}
+
+function retrieveQuote(email) {
+    // hide email, show spinner
+    hideEmailShowSpinner();
+
+    // collect necessary data
+    let style = selectedStyleID;
+
+    // create quantities string
+    let quantityInputs = $('.quantity-input');
+    let quantityString = '';
+
+    quantityInputs.each(function (idx) {
+        quantityString += `${ Number($(this).val()) }`;
+
+        if ( idx !== quantityInputs.length-1 ) {
+            quantityString += ',';
+        }
+    });
+
+    // create addon string
+    let addonInputs = $('.addon-input');
+    let addonString = '';
+
+    addonInputs.each(function(idx) {
+        let element = $(this);
+        if( element.is(':checked') ) { // if checked add to addon string
+            addonString += `${ element.data('addon-id') }`;
+
+            if( idx !== addonInputs.length-1 ) {
+                addonString += ',';
+            }
+        }
+    });
+
+    let inks = $('#ink-color-number-select').val();
+    let comments = $('#additional-comments-text').text();
+
+
+ // make a request to the price endpoint
+    getQuote(style, quantityString, inks, addonString, comments, email, showQuote);
+}
+
+function showQuote(data) {
+    // called by callback of getPrice
+    let price = data["price"];
+
+    // hide spinner
+    hideSpinnerShowPrice(price);
+}
+
+function hideEmailShowSpinner() {
+    $('.email-input').fadeOut(100, function() {
+        $('.spinner').fadeIn(100);
+    });
+}
+
+function hideSpinnerShowPrice(price) {
+    $('.spinner').fadeOut(100, function() {
+        $('.final-cost').html(`$${price}`);
+        $('.total-quantity').html(totalQuantity);
+        $('.price-display').fadeIn(100);
+    })
+}
+
+function startOver() {
+    // hide modals
+}
+
+
