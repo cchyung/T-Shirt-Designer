@@ -52,6 +52,10 @@ select {
     padding: 3px 5px;
 }
 
+.responsive {
+    display: none;
+}
+
 .orange {
     color: #F66931;
 }
@@ -86,27 +90,11 @@ select {
     width: 500px;
 }
 
-/* move designer up when window height is small */
-@media screen and ( max-height: 700px ) {
-    .designer {
-        top: 10px;
-    }
-}
-
-@media screen and ( max-height: 650px ) {
-    .controls {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 20px;
-    }
-}
 
 .canvas-container {
     margin: 0 auto;
     width: 500px;
     height: 500px;
-    padding-top: 10px;
 }
 
 .current-side {
@@ -535,5 +523,112 @@ select {
 @media screen and (max-width: 1300px) {
     .content-block {
         width: 85%;
+    }
+}
+
+/* -- responsive -- */
+@media screen and (max-width: 850px) {
+    .responsive {
+        display: inherit;
+    }
+
+    .content-block {
+        width: 90%;
+    }
+
+    .no-responsive {
+        display: none;
+    }
+
+    .designer {
+        position: relative;
+        left: 0;
+        right: 0;
+        top: 0;
+        margin: 0 auto;
+        width: 350px;
+    }
+
+    .t-shirt-designer-title {
+        font-size: 25px;
+        margin-left: 15px;
+        padding: 10px 0;
+        margin-bottom: 0;
+    }
+
+    .canvas-container {
+        width: 350px;
+        height: 350px;
+    }
+
+    .canvas-action-container {
+        margin: 0 auto;
+        width: 340px;
+        text-align: center;
+    }
+
+    .control {
+        margin: 0 5px;
+    }
+
+    .options {
+        margin-top: 30px;
+        padding: 20px;
+        width: 100%;
+        background: none;
+        box-shadow: none;
+        max-width: none;
+    }
+
+    .style {
+        width: 125px;
+        height: 125px;
+    }
+
+    .style-colors {
+        text-align: left;
+        margin-right:10px;
+        padding: 10px 20px;
+    }
+
+    .style-color {
+        margin: 5px;
+    }
+
+    input, textarea{
+        /*background-color: #F8F8F8;*/
+        border: 1px solid black;
+    }
+
+    .final-modal {
+        width: 350px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .style-colors {
+        position: fixed;
+        top: 50%;
+        right: 30px;
+        left: 30px;
+        margin: 0 auto;
+    }
+
+
+}
+
+/* move designer up when window height is small */
+@media screen and ( max-height: 700px ) and ( min-width: 850px ) {
+    .designer {
+        top: 10px;
+    }
+}
+
+@media screen and ( max-height: 650px ) and ( min-width: 850px ) {
+    .controls {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 20px;
     }
 }
