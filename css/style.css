@@ -485,6 +485,10 @@ select {
     margin-bottom: 0;
 }
 
+.error-display {
+    display: none;
+}
+
 .spinner {
     display: none;
     width: 40px;

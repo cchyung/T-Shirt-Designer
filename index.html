@@ -210,7 +210,12 @@ Created On: 5/20/18
             </tr>
         </table>
         <p>Your quote has been submitted. We will be in contact shortly!</p>
-        <button id='start-over' class="btn start-over-btn" onclick="closeModal()">Close</button>
+        <button class="btn start-over-btn" onclick="startOver()">Close</button>
+    </div>
+    <div class="error-display">
+        <h2>Error</h2>
+        <p>Unfortunately, an error occured while trying to process your request.  Please try again later.</p>
+        <button class="btn start-over-btn" onclick="startOver()">Close</button>
     </div>
     <div class='spinner'></div>
 </div>

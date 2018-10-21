@@ -186,6 +186,7 @@ function closeModal() {
 
     $('.email-input').show(500);
     $('.price-display').hide(500);
+    $('.error-display').hide(500);
 
 }
 
@@ -250,8 +251,11 @@ function retrieveQuote(email) {
     let comments = $('#additional-comments-text').text();
 
 
- // make a request to the price endpoint
-    getQuote(style, quantityString, inks, addonString, comments, email, showQuote);
+    // get images from canvas
+    let images = exportImages();
+
+    // make a request to the price endpoint
+    getQuote(style, quantityString, inks, addonString, comments, email, images, showQuote, showError);
 }
 
 function showQuote(data) {
@@ -260,6 +264,10 @@ function showQuote(data) {
 
     // hide spinner
     hideSpinnerShowPrice(price);
+}
+
+function showError() {
+    hideSpinnerShowError();
 }
 
 function hideEmailShowSpinner() {
@@ -276,8 +284,16 @@ function hideSpinnerShowPrice(price) {
     })
 }
 
+function hideSpinnerShowError() {
+    $('.spinner').fadeOut(100, function() {
+        $('.error-display').fadeIn(100);
+    })
+}
+
 function startOver() {
     // hide modals
+    closeModal();
+    initializeFirstStyle();
 }
 
 
