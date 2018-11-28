@@ -240,12 +240,12 @@ function retrieveQuote(email) {
         let element = $(this);
         if( element.is(':checked') ) { // if checked add to addon string
             addonString += `${ element.data('addon-id') }`;
-
-            if( idx !== addonInputs.length-1 ) {
-                addonString += ',';
-            }
+            addonString += ',';
         }
     });
+
+    // chop off last comma
+    addonString = addonString.substring(0, addonString.length - 1);
 
     let inks = $('#ink-color-number-select').val();
     let comments = $('#additional-comments-text').text();
@@ -295,5 +295,3 @@ function startOver() {
     closeModal();
     initializeFirstStyle();
 }
-
-
