@@ -408,7 +408,7 @@ select {
 .final-modal {
     position: fixed;
     width: 400px;
-    height: 250px;
+    height: 350px;
     top: -100%;
     margin: 0 auto;
     margin-top: -125px;
@@ -451,6 +451,7 @@ select {
 
 .email-input input {
     width: 100%;
+    margin: 10px 0;
     padding: 5px 10px;
 }
 

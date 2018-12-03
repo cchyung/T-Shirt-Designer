@@ -295,5 +295,4 @@ function hideSpinnerShowError() {
 function startOver() {
     // hide modals
     closeModal();
-    initializeFirstStyle();
 }
