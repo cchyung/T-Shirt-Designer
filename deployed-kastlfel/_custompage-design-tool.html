@@ -8,13 +8,14 @@
 
 <div id="Container">
     %%Panel.Header%%
-    <section id="full-image" class="about">
-        <h1 class="about"><img class="custom-full-images" title="About Kastlfel" src="//cdn2.bigcommerce.com/server4600/393c2/product_images/uploaded_images/design-image2.jpg?t=1539296725&_ga=2.4799731.1173565532.1539280994-1486434131.1531945338" alt="design-image" width="1920" height="380" /></h1>
+   <section id="full-image" class="about">
+     <!--   <h1 class="about"><img class="custom-full-images" title="About Kastlfel" src="//cdn2.bigcommerce.com/server4600/393c2/product_images/uploaded_images/design-image2.jpg?t=1539296725&_ga=2.4799731.1173565532.1539280994-1486434131.1531945338" alt="design-image" width="1920" height="380" /></h1>
         <div><span>START A PROJECT</span> Design your next order</div>
+-->
         <p class="subheader">
                   <ul id="about-nav" class="clearfix">
                     <div id="Center">
-              <li style="color:#636363;font-size:15px;">- Not a distributer with us? <a style="color:#ed6e41;" href="//www.ecocentricbrands.com/apply-for-account/">Apply for Account</a> -</li>
+              <li style="color:#636363;font-size:15px;">- Not a distributer with us? <a style="color:#ed6e41;" href="https://www.kastlfel.com/apply-for-account">Apply for Account</a> -</li>
             </div>
             </ul><br>
                 </p>
@@ -83,7 +84,7 @@
                               </tr>
                           </table>
                           <button id='text-art-add-button' class='button'>
-                              <img class='button-icon' src="img/add-icon.png">
+                              <img class='button-icon' src="%%GLOBAL_ShopPath%%/template/Images/add-icon.png">
                               <span>Add</span>
                           </button>
                       </div>
@@ -182,6 +183,7 @@
                                       <p>Please enter your email to get your quote!</p>
                                       <div class="email-input-errors"></div>
                                       <input id='email' type='email' name='email' placeholder='Please enter your email'>
+                                      <input id='name' type='name' name='name' placeholder='Please enter your full name'>
                                       <button id='submit-email' class='button submit-button' onclick="submitEmail()">Submit</button>
                                   </div>
                                   <div class='price-display'>
@@ -205,7 +207,7 @@
     </div>
     <div class="error-display">
         <h2>Error</h2>
-        <p>Unfortunately, an error occured while trying to process your request.  Please try again later.</p>
+        <p>Unfortunately, an error occurred while trying to process your request.  Please try again later.</p>
         <button class="button start-over-button" onclick="startOver()">Close</button>
     </div>
     <div class='spinner'></div>

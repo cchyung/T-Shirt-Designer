@@ -34,8 +34,8 @@ function fetchAddons(callback){
 }
 
 // TODO: Update command to upload images
-function getQuote(style, quantities, inks, addons, comments, email, images, callback, error) {
-    let url = `${ROOT_URL}calculate-price?style=${style}&quantities=${quantities}&inks=${inks}&addons=${addons}&comments=${comments}&email=${email}`;
+function getQuote(style, quantities, inks, addons, comments, email, name, images, callback, error) {
+    let url = `${ROOT_URL}calculate-price?style=${style}&quantities=${quantities}&inks=${inks}&addons=${addons}&comments=${comments}&email=${email}&name=${name}`;
 
     let data = new FormData();
     data.append('front', images['front']);

@@ -414,7 +414,7 @@ table td {
 .final-modal {
     position: fixed;
     width: 400px;
-    height: 280px;
+    height: 330px;
     top: -100%;
     margin: 0 auto;
     margin-top: -125px;
@@ -457,6 +457,7 @@ table td {
 .email-input input {
     width: 100%;
     padding: 5px 10px;
+    margin: 5px;
 }
 
 .email-input .submit-button {

@@ -201,19 +201,21 @@ function submitForm() {
 function submitEmail() {
     let emailInput = $('#email');
     let email = emailInput.val();
+    let nameInput = $('#name');
+    let name = nameInput.val();
     let errorContainer = $('.email-input-errors');
 
     // clear error container
     errorContainer.empty();
 
-    if(email) {
-        retrieveQuote(email);
+    if(email && name) {
+        retrieveQuote(email, name);
     } else {
-        errorContainer.append(`<p class="form-error-msg">Email must not be empty.</p>`);
+        errorContainer.append(`<p class="form-error-msg">Email and or name must not be empty.</p>`);
     }
 }
 
-function retrieveQuote(email) {
+function retrieveQuote(email, name) {
     // hide email, show spinner
     hideEmailShowSpinner();
 
@@ -255,7 +257,7 @@ function retrieveQuote(email) {
     let images = exportImages();
 
     // make a request to the price endpoint
-    getQuote(style, quantityString, inks, addonString, comments, email, images, showQuote, showError);
+    getQuote(style, quantityString, inks, addonString, comments, email, name, images, showQuote, showError);
 }
 
 function showQuote(data) {
