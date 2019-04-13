@@ -1,6 +1,9 @@
 # T-Shirt-Designer
-## Backend "Documentation"
-TODO: Still need to come up with solution for images...
+
+Front end code for a t shirt designer UI built for kastlfel.com
+
+Built in pure javascript and deployed to a wordpress website
+## Backend Documentation
 ### Resources
 #### Styles
 ```
