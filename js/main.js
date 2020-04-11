@@ -40,7 +40,7 @@ function setupStyles(styles){
 
     if(styles[i]["images"]) {
         backgroundImage = styles[i]["images"]["front"];
-    }
+    } 
 
     let css = ``;
     let noImage = ``;
@@ -171,14 +171,14 @@ function verifyForm() {
     return errorMessages.length === 0;
 }
 
-function showModal() {
+function showDesignToolModal() {
     let modal = $('.final-modal');
     let modalBackground = $('.modal-background');
     modal.addClass('show');
     modalBackground.addClass('show');
 }
 
-function closeModal() {
+function closeDesignToolModal() {
     let modal = $('.final-modal');
     let modalBackground = $('.modal-background');
     modal.removeClass('show');
@@ -187,14 +187,13 @@ function closeModal() {
     $('.email-input').show(500);
     $('.price-display').hide(500);
     $('.error-display').hide(500);
-
 }
 
 function submitForm() {
     // verify correctness of form
     if(verifyForm()) {
         // show email modal
-        showModal();
+        showDesignToolModal();
     }
 }
 
@@ -294,5 +293,5 @@ function hideSpinnerShowError() {
 
 function startOver() {
     // hide modals
-    closeModal();
+    closeDesignToolModal();
 }
