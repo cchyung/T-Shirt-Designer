@@ -223,15 +223,18 @@ function retrieveQuote(email, name) {
 
     // create quantities string
     let quantityInputs = $('.quantity-input');
-    let quantityString = '';
 
-    quantityInputs.each(function (idx) {
-        quantityString += `${ Number($(this).val()) }`;
+    let l   = quantityInputs[1].value;
+    let xs  = quantityInputs[0].value;
+    let s   = quantityInputs[2].value;
+    let xl  = quantityInputs[3].value;
+    let m   = quantityInputs[4].value;
+    let xxl = quantityInputs[5].value;
 
-        if ( idx !== quantityInputs.length-1 ) {
-            quantityString += ',';
-        }
-    });
+    quantityString = `${xs},${s},${m},${l},${xl},${xxl}`;
+
+
+    console.log(quantityString);
 
     // create addon string
     let addonInputs = $('.addon-input');
@@ -249,7 +252,7 @@ function retrieveQuote(email, name) {
     addonString = addonString.substring(0, addonString.length - 1);
 
     let inks = $('#ink-color-number-select').val();
-    let comments = $('#additional-comments-text').text();
+    let comments = $('#additional-comments-text').val();
 
 
     // get images from canvas
